@@ -600,7 +600,7 @@ function renderTable(data) {
       <td><strong>${c.name}</strong></td>
       <td>${c.cn_name}</td>
       <td class="bar-cell"><div class="fill" style="width:${barW}%"></div><span>${c.sales.toLocaleString()}</span></td>
-      <td>$$${Math.round(c.revenue * 100).toLocaleString()}</td>
+      <td>$${Math.round(c.revenue * 100).toLocaleString()}</td>
       <td>$${c.price.toFixed(2)}</td>
       <td><span class="badge ${concBadge}">${(c.concentration*100).toFixed(0)}%</span></td>
       <td><span class="badge ${brandBadge}">${(c.brand_conc*100).toFixed(0)}%</span></td>
