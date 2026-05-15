@@ -594,13 +594,15 @@ function renderTable(data) {
     
     const maxSales = CATEGORIES[0].sales;
     const barW = (c.sales / maxSales * 100).toFixed(0);
+    const maxRev = CATEGORIES[0].revenue * 100;
+    const revBarW = ((c.revenue * 100) / maxRev * 100).toFixed(0);
     
     return `<tr>
       <td>${i+1}</td>
       <td><strong>${c.name}</strong></td>
       <td>${c.cn_name}</td>
       <td class="bar-cell"><div class="fill" style="width:${barW}%"></div><span>${c.sales.toLocaleString()}</span></td>
-      <td>$${Math.round(c.revenue * 100).toLocaleString()}</td>
+      <td class="bar-cell"><div class="fill" style="width:${revBarW}%"></div><span>$${Math.round(c.revenue * 100).toLocaleString()}</span></td>
       <td>$${c.price.toFixed(2)}</td>
       <td><span class="badge ${concBadge}">${(c.concentration*100).toFixed(0)}%</span></td>
       <td><span class="badge ${brandBadge}">${(c.brand_conc*100).toFixed(0)}%</span></td>
