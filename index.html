@@ -651,7 +651,7 @@ const colors = ['#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#f9
   
   const datasets = allCats.map((c,i) => ({
     label: c.cn_name || c.name,
-    data: [{x: c.concentration * 100, y: c.sales / 1000, r: Math.max(3, Math.sqrt(c.revenue * 100) / 22)}],
+    data: [{x: c.concentration * 100, y: c.sales / 1000, r: Math.max(3, Math.sqrt(c.revenue) / 22)}],
     backgroundColor: colors[i % colors.length] + '99',
     borderColor: colors[i % colors.length],
     borderWidth: 2
