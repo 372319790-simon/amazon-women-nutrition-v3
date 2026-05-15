@@ -616,7 +616,7 @@ function renderTable(data) {
       <td><strong>${c.name}</strong></td>
       <td>${c.cn_name}</td>
       <td class="bar-cell"><div class="fill" style="width:${barW}%"></div><span>${c.sales.toLocaleString()}</span></td>
-      <td>$${Math.round(c.revenue).toLocaleString()}</td>
+      <td>$$${Math.round(c.revenue * 100).toLocaleString()}</td>
       <td>$${c.price.toFixed(2)}</td>
       <td><span class="badge ${concBadge}">${(c.concentration*100).toFixed(0)}%</span></td>
       <td><span class="badge ${brandBadge}">${(c.brand_conc*100).toFixed(0)}%</span></td>
@@ -667,7 +667,7 @@ const colors = ['#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#f9
   
   const datasets = allCats.map((c,i) => ({
     label: c.cn_name || c.name,
-    data: [{x: c.concentration * 100, y: c.sales / 1000, r: Math.max(3, Math.sqrt(c.revenue) / 22)}],
+    data: [{x: c.concentration * 100, y: c.sales / 1000, r: Math.max(3, Math.sqrt(c.revenue * 100) / 22)}],
     backgroundColor: colors[i % colors.length] + '99',
     borderColor: colors[i % colors.length],
     borderWidth: 2
@@ -689,7 +689,7 @@ const colors = ['#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#f9
             title: ctx => (allCats[ctx[0].datasetIndex].cn_name || allCats[ctx[0].datasetIndex].name),
             label: ctx => {
               const c = allCats[ctx.datasetIndex];
-              return [`月销量: ${(ctx.raw.y*1000).toLocaleString()} 件`, `月销售额: $${Math.round(c.revenue).toLocaleString()}`,
+              return [`月销量: ${(ctx.raw.y*1000).toLocaleString()} 件`, `月销售额: $${Math.round(c.revenue * 100).toLocaleString()}`,
                 `平均售价: $${c.price.toFixed(0)}`, `商品集中度: ${ctx.raw.x.toFixed(0)}%  |  品牌集中度: ${(c.brand_conc*100).toFixed(0)}%`,
                 `毛利率: ${(c.margin*100).toFixed(0)}%  |  退货率: ${(c.returns*100).toFixed(2)}%`];
             }
@@ -728,7 +728,7 @@ const colors = ['#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#f9
       labels: top10.map(c => c.cn_name || c.name),
       datasets: [{
         label: '月销售额($)',
-        data: top10.map(c => Math.round(c.revenue)),
+        data: top10.map(c => Math.round(c.revenue * 100)),
         backgroundColor: colors,
         borderRadius: 6
       }]
